@@ -1,0 +1,81 @@
+
+### Invoke Servidor
+GET http://localhost:8080/
+
+#####################  FILMS #####################  
+
+### Get Films by Country
+GET http://localhost:8080/film/1
+
+### Get Films by Title
+GET http://localhost:8080/film/1/ACADEMY
+
+### Estrenos
+GET http://localhost:8080/premiere/1
+
+### Mas rentados de la ultima semana
+GET http://localhost:8080/lastweek/1
+
+### Mas rentados de todos los tiempos
+GET http://localhost:8080/alltimes/1
+
+#####################  ACTOR #####################  
+### Get Films By Actor
+GET http://localhost:8080/actor/1/ED/CHASE
+
+#####################  ADDRESS #####################  
+###Get Customer by Id
+GET http://localhost:8080/address/240
+
+#####################  CUSTOMER #####################  
+###Get Customer by Id
+GET http://localhost:8080/customer/140
+
+### Add Customer
+POST http://localhost:8080/customer
+Content-Type: application/json
+
+{
+    "storeId": 1 ,
+    "firstName": "Stephanie",
+    "lastName": "Saavedra",
+    "email": "Stephanie.saavedra@ucb.edu.bo",
+    "address": 605,
+    "active": 1
+}
+
+PUT http://localhost:8080/UpdateAddress
+Content-Type: application/json
+
+{
+    "storeId": 1 ,
+    "firstName": "Stephanie",
+    "lastName": "Saavedra",
+    "email": "Stephanie.saavedra@ucb.edu.bo",
+    "address": 605,
+    "active": 1
+}
+
+#####################  RENTAL #####################  
+### Add Rental
+POST http://localhost:8080/rental
+Content-Type: application/json
+
+{
+    "inventoryId": 1 ,
+    "customerId": 1,
+    "returnDate": "2021-11-28T00:00:00.000+00:00",
+    "staffId": 1
+}
+
+#####################  PAYMENT #####################  
+### Add Payment
+POST http://localhost:8080/payment
+Content-Type: application/json
+
+{
+    "customerId": 1 ,
+    "staffId": 1,
+    "rentalId": 16053,
+    "amount": 2.99
+}
