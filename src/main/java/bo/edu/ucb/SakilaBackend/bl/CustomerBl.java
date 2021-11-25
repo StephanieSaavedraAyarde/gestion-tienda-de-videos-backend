@@ -23,10 +23,6 @@ public class CustomerBl {
         return customerDao.AddCustomer(customer);
     }
 
-    public String UpdateCustomerAddress(Integer customerId, Address address) {
-        return customerDao.UpdateCustomerAddress(customerId, address);
-    }
-
     public List<Customer> findById(Integer id) {
         if (id == null) {
             throw new SakilaException(403, "Bad request: The id parameter is mandatory and can't be null or empty");

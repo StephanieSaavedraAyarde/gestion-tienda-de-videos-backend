@@ -25,4 +25,9 @@ public class AddressBl {
         }
         return addressDao.FindById(id);
     }
+
+    public String UpdateCustomerAddress(Integer customerId, String address) {
+        return addressDao.UpdateCustomerAddress(customerId, address);
+    }
 }
+

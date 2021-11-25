@@ -39,27 +39,7 @@ public class CustomerDao {
         }
         return "Customer Added Successfully";
     } 
-    
-    public String UpdateCustomerAddress(Integer customerId, Address address) {
-        String query =  " UPDATE address"+
-                        " INNER JOIN customer ON customer.address_id=address.address_id" +
-                        " SET address.address= ?, address.last_update=now()" +
-                        " WHERE customer.customer_id = ?";
-
-        try (
-                Connection conn = dataSource.getConnection();
-                PreparedStatement pstmt =  conn.prepareStatement(query);
-            ) {
-                
-            pstmt.setString(1, address.getAddress());
-            pstmt.setInt(2, customerId);
-            pstmt.executeUpdate();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return "Customer Address Updated Successfully";
-    }
-   
+      
 
     public List<Customer> FindById(Integer customerId) {
         List<Customer> result = new ArrayList<>();

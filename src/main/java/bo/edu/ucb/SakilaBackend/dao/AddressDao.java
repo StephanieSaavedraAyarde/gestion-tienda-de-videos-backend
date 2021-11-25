@@ -18,11 +18,12 @@ public class AddressDao {
         this.dataSource = dataSource;
     }
        
-
     public List<Address> FindById(Integer addressId) {
         List<Address> result = new ArrayList<>();
-        String query =  " Select * FROM address" +
-                        " WHERE address.address_id = ?";
+        String query =  " SELECT distinct a.address_id, a.address"+
+                        " from address a, customer c"+
+                        " WHERE a.address_id = c.address_id"+
+                        " AND c.customer_id = ?";
 
         try (
                 Connection conn = dataSource.getConnection();
@@ -37,11 +38,6 @@ public class AddressDao {
     
                 address.setAddressId(rs.getInt("address_id"));
                 address.setAddress(rs.getString("address"));
-                address.setAddress2(rs.getString("address2"));
-                address.setDistrict(rs.getString("district"));
-                address.setCity_id(rs.getInt("city_id"));
-                address.setPostal_code(rs.getString("postal_code"));
-                address.setPhone(rs.getString("phone"));
                 result.add(address);
                 }
                 rs.close();
@@ -51,4 +47,23 @@ public class AddressDao {
             return result;
     }
    
+    public String UpdateCustomerAddress(Integer customerId, String address) {
+        String query =  " UPDATE address"+
+                        " INNER JOIN customer ON customer.address_id=address.address_id" +
+                        " SET address.address= ?, address.last_update=now()" +
+                        " WHERE customer.customer_id = ?";
+
+        try (
+                Connection conn = dataSource.getConnection();
+                PreparedStatement pstmt =  conn.prepareStatement(query);
+            ) {
+                
+            pstmt.setString(1, address);
+            pstmt.setInt(2, customerId);
+            pstmt.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return "Customer Address Updated Successfully";
+    }
 }

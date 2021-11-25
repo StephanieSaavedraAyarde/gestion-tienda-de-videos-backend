@@ -23,9 +23,20 @@ GET http://localhost:8080/alltimes/1
 ### Get Films By Actor
 GET http://localhost:8080/actor/1/ED/CHASE
 
+
+
 #####################  ADDRESS #####################  
 ###Get Customer by Id
 GET http://localhost:8080/address/240
+
+### Actualizar Direccion
+PUT http://localhost:8080/UpdateAddress/240
+Content-Type: application/json
+
+{
+    "address": "This is a test"
+}
+
 
 #####################  CUSTOMER #####################  
 ###Get Customer by Id
@@ -44,17 +55,6 @@ Content-Type: application/json
     "active": 1
 }
 
-PUT http://localhost:8080/UpdateAddress
-Content-Type: application/json
-
-{
-    "storeId": 1 ,
-    "firstName": "Stephanie",
-    "lastName": "Saavedra",
-    "email": "Stephanie.saavedra@ucb.edu.bo",
-    "address": 605,
-    "active": 1
-}
 
 #####################  RENTAL #####################  
 ### Add Rental
